@@ -8,10 +8,7 @@
 
         public Day1A() : this(new ParserType("Day01\\day1.in")) { }
 
-        private Day1A(ParserType parser)
-        {
-            _parser = parser;
-        }
+        private Day1A(ParserType parser) { _parser = parser; }
 
         public string Solve()
         {

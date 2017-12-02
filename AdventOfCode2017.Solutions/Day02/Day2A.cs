@@ -1,7 +1,5 @@
 ﻿namespace AdventOfCode2017.Solutions.Day2
 {
-    using System;
-    using System.Linq;
     using ParserType = MultiLineStringParser;
 
     internal class Day2A : IProblem
@@ -15,24 +13,13 @@
         public virtual string Solve()
         {
             var total = 0;
-            foreach(var line in _parser.Parse())
+            foreach (var line in _parser.Parse())
             {
-                var numbers = line
-                    .Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(y => int.Parse(y));
-
-                int max = int.MinValue;
-                int min = int.MaxValue;
-                foreach(var i in numbers)
-                {
-                    if (i < min)
-                        min = i;
-
-                    if (i > max)
-                        max = i;
-                }
+                var numbers = line.ParseTabDelimitedInts();
+                numbers.MinMax(out int min, out int max);
                 total += max - min;
             }
+
             return total.ToString();
         }
     }

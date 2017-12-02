@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2017", "AdventOfCode2017\AdventOfCode2017.csproj", "{700043E2-E87A-43FB-B1B8-7EDB05A393BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2017.Solutions", "AdventOfCode2017.Solutions\AdventOfCode2017.Solutions.csproj", "{D79C2757-AE20-4A30-859F-2F5036F20130}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snippets", "Snippets", "{F46A6B3E-3027-41BC-8710-3751542E7B95}"
+	ProjectSection(SolutionItems) = preProject
+		NestedFor.snippet = NestedFor.snippet
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAD30ADB-C18C-4FE9-A432-CE704902FBB8}
 	EndGlobalSection
 EndGlobal
