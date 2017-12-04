@@ -1,5 +1,6 @@
 ﻿namespace AdventOfCode2017.Solutions.Day3
 {
+    using System;
     using System.Collections.Generic;
     using ParserType = SingleLineStringParser;
 
@@ -8,63 +9,20 @@
         private Dictionary<Coordinate, int> _mapping = new Dictionary<Coordinate, int>();
         private readonly ParserType _parser;
 
-        public Day3B(ParserType parser)
-        {
-            _parser = parser;
-        }
+        public Day3B(ParserType parser) { _parser = parser; }
 
-        public Day3B() : this(new ParserType("Day03\\day3.in"))
-        {
-
-        }
+        public Day3B() : this(new ParserType("Day03\\day3.in")) { }
 
         public virtual string Solve()
         {
             var number = int.Parse(_parser.Parse());
-
-            var current = 1;
-            var x = 1;
-            var y = 1;
-            var width = 8;
-
-            _mapping.Add(new Coordinate(x, y), 1);
-
-            while (current < number)
+            int current = 0;
+            foreach (var coordinate in SpiralCoordinates.GenerateCounterClockwise(number))
             {
-                current = GetValueForCoordinates(++x, y);
-                _mapping.Add(new Coordinate(x, y), current);
-
-                var len = width / 4;
-
-                // move up
-                for (var i = 0; i < len - 1 && current < number; i++)
-                {
-                    current = GetValueForCoordinates(x, ++y);
-                    _mapping.Add(new Coordinate(x, y), current);
-                }
-
-                // move left
-                for (var i = 0; i < len && current < number; i++)
-                {
-                    current = GetValueForCoordinates(--x, y);
-                    _mapping.Add(new Coordinate(x, y), current);
-                }
-
-                // move down
-                for (var i = 0; i < len && current < number; i++)
-                {
-                    current = GetValueForCoordinates(x, --y);
-                    _mapping.Add(new Coordinate(x, y), current);
-                }
-
-                // move right
-                for (var i = 0; i < len && current < number; i++)
-                {
-                    current = GetValueForCoordinates(++x, y);
-                    _mapping.Add(new Coordinate(x, y), current);
-                }
-
-                width += 8;
+                current = Math.Max(1, GetValueForCoordinates(coordinate.X, coordinate.Y));
+                if (current > number)
+                    break;
+                _mapping.Add(coordinate, current);
             }
 
             return current.ToString();
@@ -73,38 +31,15 @@
         private int GetValueForCoordinates(int x, int y)
         {
             var sum = 0;
-
-            var topLeft = new Coordinate(x - 1, y + 1);
-            if (_mapping.ContainsKey(topLeft))
-                sum += _mapping[topLeft];
-
-            var top = new Coordinate(x, y + 1);
-            if (_mapping.ContainsKey(top))
-                sum += _mapping[top];
-
-            var topRight = new Coordinate(x + 1, y + 1);
-            if (_mapping.ContainsKey(topRight))
-                sum += _mapping[topRight];
-
-            var left = new Coordinate(x - 1, y);
-            if (_mapping.ContainsKey(left))
-                sum += _mapping[left];
-
-            var right = new Coordinate(x + 1, y);
-            if (_mapping.ContainsKey(right))
-                sum += _mapping[right];
-
-            var bottomLeft = new Coordinate(x - 1, y - 1);
-            if (_mapping.ContainsKey(bottomLeft))
-                sum += _mapping[bottomLeft];
-
-            var bottom = new Coordinate(x, y - 1);
-            if (_mapping.ContainsKey(bottom))
-                sum += _mapping[bottom];
-
-            var bottomRight = new Coordinate(x + 1, y - 1);
-            if (_mapping.ContainsKey(bottomRight))
-                sum += _mapping[bottomRight];
+            
+            sum += _mapping.GetValueOrDefault(new Coordinate(x-1, y+1), 0); // top left
+            sum += _mapping.GetValueOrDefault(new Coordinate(x,   y+1), 0); // top
+            sum += _mapping.GetValueOrDefault(new Coordinate(x+1, y+1), 0); // top right
+            sum += _mapping.GetValueOrDefault(new Coordinate(x-1, y  ), 0); // left
+            sum += _mapping.GetValueOrDefault(new Coordinate(x+1, y  ), 0); // right
+            sum += _mapping.GetValueOrDefault(new Coordinate(x-1, y-1), 0); // bottom left
+            sum += _mapping.GetValueOrDefault(new Coordinate(x,   y-1), 0); // bottom
+            sum += _mapping.GetValueOrDefault(new Coordinate(x+1, y-1), 0); // bottom right
 
             return sum;
         }

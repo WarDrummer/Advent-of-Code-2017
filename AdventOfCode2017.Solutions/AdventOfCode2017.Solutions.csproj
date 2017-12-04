@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ClipboardDecorator.cs" />
     <Compile Include="Coordinate.cs" />
+    <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="SpiralCoordinates.cs" />
     <Compile Include="Day10\Day10A.cs" />
     <Compile Include="Day10\Day10B.cs" />
