@@ -1,6 +1,8 @@
 ﻿namespace AdventOfCode2017.Solutions.Day4
 {
-    using ParserType = SingleLineStringParser;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ParserType = MultiLineStringParser;
 
     internal class Day4A : IProblem
     {
@@ -12,7 +14,29 @@
 
         public virtual string Solve()
         {
-            return "";
+            var phrases = _parser.Parse().ToArray();
+            var count = 0;
+
+            foreach(var phrase in phrases)
+                if(!ContainsDuplicateWords(phrase))
+                    count++;
+
+            return count.ToString();
+        }
+
+        private static bool ContainsDuplicateWords(string phrase)
+        {
+            var set = new HashSet<string>();
+            var words = phrase.SplitAndRemoveEmpty();
+
+            foreach (var word in words)
+            {
+                if (set.Contains(word))
+                    return true;
+                set.Add(word);
+            }
+
+            return false;
         }
     }
 }

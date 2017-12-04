@@ -10,5 +10,10 @@
                 line.Split(delimiters, StringSplitOptions.RemoveEmptyEntries), 
                 int.Parse);
         }
+
+        public static string[] SplitAndRemoveEmpty(this string line)
+        {
+            return line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+        }
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace AdventOfCode2017.Solutions.Day2
 {
-    using System;
     using System.Linq;
     using ParserType = MultiLineStringParser;
 
