@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     internal static class SpiralCoordinates
     {
-        internal static IEnumerable<Coordinate> GenerateClockwise(int number)
+        internal static IEnumerable<Coordinate> GenerateCounterClockwise(int number)
         {
             var current = 1;
             var x = 1;

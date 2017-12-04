@@ -6,15 +6,9 @@
     {
         private readonly ParserType _parser;
 
-        public Day4A(ParserType parser)
-        {
-            _parser = parser;
-        }
+        public Day4A(ParserType parser) { _parser = parser; }
 
-        public Day4A() : this(new ParserType("Day04\\day4.in"))
-        {
-
-        }
+        public Day4A() : this(new ParserType("Day04\\day4.in")) { }
 
         public virtual string Solve()
         {
