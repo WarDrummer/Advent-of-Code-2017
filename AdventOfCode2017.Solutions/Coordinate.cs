@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2017.Solutions.Day3
+﻿namespace AdventOfCode2017.Solutions
 {
     internal struct Coordinate
     {

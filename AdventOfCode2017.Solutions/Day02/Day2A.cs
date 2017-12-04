@@ -15,7 +15,7 @@
             var total = 0;
             foreach (var line in _parser.Parse())
             {
-                var numbers = line.ParseTabDelimitedInts();
+                var numbers = line.ParseDelimitedInts('\t');
                 numbers.MinMax(out int min, out int max);
                 total += max - min;
             }

@@ -4,9 +4,11 @@
 
     public static class StringExtensions
     {
-        public static int[] ParseTabDelimitedInts(this string line)
+        public static int[] ParseDelimitedInts(this string line, params char[] delimiters)
         {
-            return Array.ConvertAll(line.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            return Array.ConvertAll(
+                line.Split(delimiters, StringSplitOptions.RemoveEmptyEntries), 
+                int.Parse);
         }
     }
 }

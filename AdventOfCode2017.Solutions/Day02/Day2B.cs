@@ -18,7 +18,7 @@
 
             foreach (var line in _parser.Parse())
             {
-                var numbers = line.ParseTabDelimitedInts()
+                var numbers = line.ParseDelimitedInts('\t')
                     .OrderByDescending(i => i)
                     .ToArray();
 
