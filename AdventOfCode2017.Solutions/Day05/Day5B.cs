@@ -1,24 +1,31 @@
 ﻿namespace AdventOfCode2017.Solutions.Day05
 {
-    using ParserType = SingleLineStringParser;
+    using System.Linq;
+    using ParserType = MultiLineStringParser;
 
     internal class Day5B : IProblem
     {
         private readonly ParserType _parser;
 
-        public Day5B(ParserType parser)
-        {
-            _parser = parser;
-        }
+        public Day5B(ParserType parser) { _parser = parser; }
 
-        public Day5B() : this(new ParserType("Day05\\day5.in"))
-        {
-
-        }
+        public Day5B() : this(new ParserType("Day05\\day5.in")) { }
 
         public virtual string Solve()
         {
-            return "";
+            var input = _parser.Parse().Select(int.Parse).ToArray();
+
+            var nextInstruction = 0;
+            var steps = 0;
+            while (nextInstruction < input.Length)
+            {
+                var offset = input[nextInstruction];
+                input[nextInstruction] += (input[nextInstruction] > 2) ? -1 : 1;
+                nextInstruction += offset;
+                steps++;
+            }
+
+            return steps.ToString();
         }
     }
 }

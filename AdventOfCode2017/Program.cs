@@ -9,7 +9,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine(
-                ProblemFactory.Create(ProblemId.Day5A)
+                ProblemFactory.Create(ProblemId.Day5B)
                 .SendToClipboard()
                 .AppendTime()
                 .Solve());
