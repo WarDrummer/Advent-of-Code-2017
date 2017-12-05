@@ -1,7 +1,8 @@
-﻿namespace AdventOfCode2017.Solutions.Day4
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace AdventOfCode2017.Solutions.Day04
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using ParserType = MultiLineStringParser;
 
     internal class Day4A : IProblem

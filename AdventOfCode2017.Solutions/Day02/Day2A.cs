@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2017.Solutions.Day2
+﻿namespace AdventOfCode2017.Solutions.Day02
 {
     using ParserType = MultiLineStringParser;
 

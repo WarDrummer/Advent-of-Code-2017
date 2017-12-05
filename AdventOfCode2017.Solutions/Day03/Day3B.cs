@@ -1,12 +1,13 @@
-﻿namespace AdventOfCode2017.Solutions.Day3
+﻿namespace AdventOfCode2017.Solutions.Day03
 {
     using System;
     using System.Collections.Generic;
+
     using ParserType = SingleLineStringParser;
 
     internal class Day3B : IProblem
     {
-        private Dictionary<Coordinate, int> _mapping = new Dictionary<Coordinate, int>();
+        private readonly Dictionary<Coordinate, int> _mapping = new Dictionary<Coordinate, int>();
         private readonly ParserType _parser;
 
         public Day3B(ParserType parser) { _parser = parser; }

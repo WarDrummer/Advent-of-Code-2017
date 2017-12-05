@@ -1,6 +1,7 @@
-﻿namespace AdventOfCode2017.Solutions.Day2
+﻿using System.Linq;
+
+namespace AdventOfCode2017.Solutions.Day02
 {
-    using System.Linq;
     using ParserType = MultiLineStringParser;
 
     internal class Day2B : IProblem

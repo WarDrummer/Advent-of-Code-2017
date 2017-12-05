@@ -1,7 +1,8 @@
-﻿namespace AdventOfCode2017.Solutions.Day3
+﻿using System;
+using System.Collections.Generic;
+
+namespace AdventOfCode2017.Solutions.Day03
 {
-    using System;
-    using System.Collections.Generic;
     using ParserType = SingleLineStringParser;
 
     internal class Day3A : IProblem

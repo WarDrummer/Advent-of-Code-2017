@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2017.Solutions.Day8
+﻿namespace AdventOfCode2017.Solutions.Day08
 {
     using ParserType = SingleLineStringParser;
 
