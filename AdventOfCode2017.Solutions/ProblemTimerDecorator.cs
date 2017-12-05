@@ -30,7 +30,7 @@ namespace AdventOfCode2017.Solutions
                 sw.Stop();
             }
 
-            return $"{result}\n\r{sw.Elapsed}";
+            return $"{result}\n\r{sw.Elapsed} ({sw.ElapsedMilliseconds}ms)";
         }
     }
 }
