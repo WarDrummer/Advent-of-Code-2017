@@ -16,7 +16,7 @@ namespace AdventOfCode2017.Solutions.Day04
 
         public virtual string Solve()
         {
-            var phrases = _parser.Parse().ToArray();
+            var phrases = _parser.GetData().ToArray();
             var count = 0;
 
             foreach (var phrase in phrases)

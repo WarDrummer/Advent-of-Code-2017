@@ -6,7 +6,7 @@
     {
         public SingleLineStringParser(string inputFile) : base(inputFile) { }
 
-        public override string Parse()
+        public override string GetData()
         {
             var sb = new StringBuilder();
             foreach (var line in GetInput())

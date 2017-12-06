@@ -2,6 +2,6 @@
 {
     public interface IInputParser<T>
     {
-        T Parse();
+        T GetData();
     }
 }

@@ -6,7 +6,7 @@ namespace AdventOfCode2017.Solutions
     {
         public MultiLineStringParser(string inputFile) : base(inputFile) { }
 
-        public override IEnumerable<string> Parse()
+        public override IEnumerable<string> GetData()
         {
             return GetInput();
         }

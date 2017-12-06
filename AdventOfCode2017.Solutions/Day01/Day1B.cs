@@ -12,7 +12,7 @@
 
         public string Solve()
         {
-            var input = _parser.Parse().Trim();
+            var input = _parser.GetData().Trim();
 
             var sum = 0;
             var offset = input.Length / 2;

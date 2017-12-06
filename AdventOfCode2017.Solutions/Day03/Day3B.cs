@@ -16,7 +16,7 @@
 
         public virtual string Solve()
         {
-            var number = int.Parse(_parser.Parse());
+            var number = int.Parse(_parser.GetData());
             int current = 0;
             foreach (var coordinate in SpiralCoordinates.GenerateCounterClockwise(number))
             {

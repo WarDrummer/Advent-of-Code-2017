@@ -7,15 +7,15 @@
 
     internal class Day6A : IProblem
     {
-        protected readonly ParserType Parser;
+        protected readonly ParserType FileParser;
 
-        public Day6A(ParserType parser) { Parser = parser; }
+        public Day6A(ParserType fileParser) { FileParser = fileParser; }
 
         public Day6A() : this(new ParserType("Day06\\day6.in")) { }
 
         public virtual string Solve()
         {
-            var banks = Parser.Parse().ParseDelimitedInts('\t').ToArray();
+            var banks = FileParser.GetData().ParseDelimitedInts('\t').ToArray();
             var seen = new HashSet<int>();
 
             var hash = banks.CreateHash();

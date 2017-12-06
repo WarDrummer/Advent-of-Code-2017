@@ -23,6 +23,6 @@ namespace AdventOfCode2017.Solutions
             }
         }
 
-        public abstract T Parse();
+        public abstract T GetData();
     }
 }

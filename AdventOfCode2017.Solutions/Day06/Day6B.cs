@@ -7,7 +7,7 @@
     {
         public override string Solve()
         {
-            var banks = Parser.Parse().ParseDelimitedInts('\t').ToArray();
+            var banks = FileParser.GetData().ParseDelimitedInts('\t').ToArray();
             var seen = new HashSet<int>();
 
             var key = banks.CreateHash();

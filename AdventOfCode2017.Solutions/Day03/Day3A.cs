@@ -15,7 +15,7 @@ namespace AdventOfCode2017.Solutions.Day03
         
         public virtual string Solve()
         {
-            var number = int.Parse(_parser.Parse());
+            var number = int.Parse(_parser.GetData());
             var mapping = new Dictionary<int, Coordinate>(number);
             var current = 1;
 

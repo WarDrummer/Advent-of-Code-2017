@@ -13,7 +13,7 @@
         public virtual string Solve()
         {
             var total = 0;
-            foreach (var line in _parser.Parse())
+            foreach (var line in _parser.GetData())
             {
                 var numbers = line.ParseDelimitedInts('\t');
                 numbers.MinMax(out int min, out int max);

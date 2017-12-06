@@ -13,7 +13,7 @@
 
         public virtual string Solve()
         {
-            var input = _parser.Parse().Select(int.Parse).ToArray();
+            var input = _parser.GetData().Select(int.Parse).ToArray();
 
             var nextInstruction = 0;
             var steps = 0;
