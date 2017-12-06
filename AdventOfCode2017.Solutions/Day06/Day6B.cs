@@ -1,24 +1,33 @@
 ﻿namespace AdventOfCode2017.Solutions.Day06
 {
-    using ParserType = SingleLineStringParser;
+    using System.Collections.Generic;
+    using System.Linq;
 
-    internal class Day6B : IProblem
+    internal class Day6B : Day6A
     {
-        private readonly ParserType _parser;
-
-        public Day6B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
-        }
+            var banks = Parser.Parse().ParseDelimitedInts('\t').ToArray();
+            var seen = new HashSet<int>();
 
-        public Day6B() : this(new ParserType("Day06\\day6.in"))
-        {
+            var key = banks.CreateHash();
+            while (!seen.Contains(key))
+            {
+                seen.Add(key);
+                key = GetNextHash(banks);
+            }
 
-        }
+            var count = 0;
+            var nextHash = 0;
 
-        public virtual string Solve()
-        {
-            return "";
+            while (nextHash != key)
+            {
+                seen.Add(nextHash);
+                nextHash = GetNextHash(banks);
+                count++;
+            }
+
+            return count.ToString();
         }
     }
 }
