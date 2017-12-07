@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrayExtensions.cs" />
+    <Compile Include="BreadthFirstSearch.cs" />
     <Compile Include="ClipboardDecorator.cs" />
     <Compile Include="Coordinate.cs" />
     <Compile Include="DictionaryExtensions.cs" />
