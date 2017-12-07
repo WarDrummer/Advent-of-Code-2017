@@ -1,7 +1,7 @@
-﻿namespace AdventOfCode2017.Solutions
-{
-    using System;
+﻿using System;
 
+namespace AdventOfCode2017.Solutions.Extensions
+{
     public static class StringExtensions
     {
         public static int[] ParseDelimitedInts(this string line, params char[] delimiters)

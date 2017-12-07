@@ -1,32 +1,32 @@
-﻿using System.Reflection;
-using AdventOfCode2017.Solutions.Day01;
-using AdventOfCode2017.Solutions.Day02;
-using AdventOfCode2017.Solutions.Day03;
-using AdventOfCode2017.Solutions.Day04;
-using AdventOfCode2017.Solutions.Day05;
-using AdventOfCode2017.Solutions.Day06;
-using AdventOfCode2017.Solutions.Day07;
-using AdventOfCode2017.Solutions.Day08;
-using AdventOfCode2017.Solutions.Day09;
-using AdventOfCode2017.Solutions.Day10;
-using AdventOfCode2017.Solutions.Day16;
-using AdventOfCode2017.Solutions.Day18;
-using AdventOfCode2017.Solutions.Day23;
-using AdventOfCode2017.Solutions.Day24;
-using AdventOfCode2017.Solutions.Day11;
-using AdventOfCode2017.Solutions.Day12;
-using AdventOfCode2017.Solutions.Day13;
-using AdventOfCode2017.Solutions.Day14;
-using AdventOfCode2017.Solutions.Day15;
-using AdventOfCode2017.Solutions.Day17;
-using AdventOfCode2017.Solutions.Day19;
-using AdventOfCode2017.Solutions.Day20;
-using AdventOfCode2017.Solutions.Day21;
-using AdventOfCode2017.Solutions.Day22;
-using AdventOfCode2017.Solutions.Day25;
-
-namespace AdventOfCode2017.Solutions
+﻿namespace AdventOfCode2017.Solutions.Problem
 {
+    using System.Reflection;
+    using Day01;
+    using Day02;
+    using Day03;
+    using Day04;
+    using Day05;
+    using Day06;
+    using Day07;
+    using Day08;
+    using Day09;
+    using Day10;
+    using Day11;
+    using Day12;
+    using Day13;
+    using Day14;
+    using Day15;
+    using Day16;
+    using Day17;
+    using Day18;
+    using Day19;
+    using Day20;
+    using Day21;
+    using Day22;
+    using Day23;
+    using Day24;
+    using Day25;
+
     public class ProblemId
     {
         public static readonly string Day1A = typeof(Day1A).FullName;

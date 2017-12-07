@@ -1,4 +1,7 @@
 ﻿using System.Linq;
+using AdventOfCode2017.Solutions.Extensions;
+using AdventOfCode2017.Solutions.Parsers;
+using AdventOfCode2017.Solutions.Problem;
 
 namespace AdventOfCode2017.Solutions.Day02
 {

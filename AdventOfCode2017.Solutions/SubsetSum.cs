@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace AdventOfCode2017.Solutions
+﻿namespace AdventOfCode2017.Solutions
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     internal class SubsetSum
     {
         public static IEnumerable<string> GetCombinations(int[] set, int sum, string values)

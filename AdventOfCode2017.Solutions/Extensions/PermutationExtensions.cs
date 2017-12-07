@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AdventOfCode2017.Solutions
+namespace AdventOfCode2017.Solutions.Extensions
 {
-    internal static class Permutation
+    internal static class PermutationExtensions
     {
         public static IEnumerable<IList<int>> GetPermutations(this IList<int> items)
         {

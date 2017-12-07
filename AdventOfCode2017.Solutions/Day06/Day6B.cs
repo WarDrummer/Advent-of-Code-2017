@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2017.Solutions.Day06
+﻿using AdventOfCode2017.Solutions.Extensions;
+
+namespace AdventOfCode2017.Solutions.Day06
 {
     using System.Collections.Generic;
     using System.Linq;

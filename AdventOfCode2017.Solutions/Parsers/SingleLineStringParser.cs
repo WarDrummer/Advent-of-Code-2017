@@ -1,7 +1,7 @@
-﻿namespace AdventOfCode2017.Solutions
-{
-    using System.Text;
+﻿using System.Text;
 
+namespace AdventOfCode2017.Solutions.Parsers
+{
     public class SingleLineStringParser : InputParser<string>
     {
         public SingleLineStringParser(string inputFile) : base(inputFile) { }

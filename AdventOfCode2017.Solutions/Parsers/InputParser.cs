@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace AdventOfCode2017.Solutions
+namespace AdventOfCode2017.Solutions.Parsers
 {
     public abstract class InputParser<T> : IInputParser<T>
     {

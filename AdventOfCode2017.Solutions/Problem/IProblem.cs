@@ -1,4 +1,4 @@
-﻿namespace AdventOfCode2017.Solutions
+﻿namespace AdventOfCode2017.Solutions.Problem
 {
     public interface IProblem
     {

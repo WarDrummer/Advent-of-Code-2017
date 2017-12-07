@@ -23,7 +23,7 @@
 
         public static string GetMd5String(string seed)
         {
-            return new string(Md5Stringifier.GetHexCharacters(seed).ToArray());
+            return new string(GetHexCharacters(seed).ToArray());
         }
     }
     

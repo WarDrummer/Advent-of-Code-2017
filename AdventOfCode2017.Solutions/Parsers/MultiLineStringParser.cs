@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AdventOfCode2017.Solutions
+namespace AdventOfCode2017.Solutions.Parsers
 {
     public class MultiLineStringParser : InputParser<IEnumerable<string>>
     {

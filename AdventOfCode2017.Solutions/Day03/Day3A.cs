@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AdventOfCode2017.Solutions.Parsers;
+using AdventOfCode2017.Solutions.Problem;
 
 namespace AdventOfCode2017.Solutions.Day03
 {

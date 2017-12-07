@@ -1,36 +1,31 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Windows.Forms;
 
-namespace AdventOfCode2017.Solutions
+namespace AdventOfCode2017.Solutions.Problem
 {
-    internal class ProblemTimerDecorator : IProblem
+    internal class ClipboardDecorator : IProblem
     {
         private readonly IProblem _problem;
 
-        public ProblemTimerDecorator(IProblem problem)
+        public ClipboardDecorator(IProblem problem)
         {
             _problem = problem;
         }
 
         public string Solve()
         {
-            var sw = new Stopwatch();
             string result;
             try
             {
-                sw.Start();
                 result = _problem.Solve();
             }
             catch (Exception ex)
             {
                 result = ex.ToString();
             }
-            finally
-            {
-                sw.Stop();
-            }
 
-            return $"{result}\n\r{sw.Elapsed} ({sw.ElapsedMilliseconds}ms)";
+            Clipboard.SetText(result);
+            return result;
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2017.Solutions
+﻿using AdventOfCode2017.Solutions.Problem;
+
+namespace AdventOfCode2017.Solutions.Extensions
 {
     public static class ProblemExtensions
     {

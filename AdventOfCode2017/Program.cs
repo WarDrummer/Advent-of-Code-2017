@@ -1,7 +1,8 @@
 ﻿namespace AdventOfCode2017
 {
     using System;
-    using AdventOfCode2017.Solutions;
+    using Solutions.Extensions;
+    using Solutions.Problem;
 
     public class Program
     {
