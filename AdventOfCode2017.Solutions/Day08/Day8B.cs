@@ -1,27 +1,38 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
+﻿using System.Linq;
 
 namespace AdventOfCode2017.Solutions.Day08
 {
-    using ParserType = SingleLineStringParser;
-
-    internal class Day8B : IProblem
+    internal class Day8B : Day8A
     {
-        private readonly ParserType _parser;
-
-        public Day8B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
-        }
+            var totalMax = 0;
+            foreach (var line in _parser.GetData().ToArray())
+            {
+                var parts = line.Split(' ');
 
-        public Day8B() : this(new ParserType("Day08\\day8.in"))
-        {
+                var commandRegister = parts[0];
+                var command = parts[1];
+                var commandValue = int.Parse(parts[2]);
+                var evalRegister = parts[4];
+                var evalOperator = parts[5];
+                var evalValue = int.Parse(parts[6]);
 
-        }
+                if (!Registers.ContainsKey(commandRegister))
+                    Registers[commandRegister] = 0;
 
-        public virtual string Solve()
-        {
-            return "";
+                if (!Registers.ContainsKey(evalRegister))
+                    Registers[evalRegister] = 0;
+
+                if (EvaluateCondition(evalRegister, evalOperator, evalValue))
+                {
+                    UpdateRegister(commandRegister, command, commandValue);
+                    if (Registers[commandRegister] > totalMax)
+                        totalMax = Registers[commandRegister];
+                }
+            }
+
+            return totalMax.ToString();
         }
     }
 }
