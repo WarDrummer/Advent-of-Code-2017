@@ -1,27 +1,52 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace AdventOfCode2017.Solutions.Day10
 {
-    using ParserType = SingleLineStringParser;
-
-    internal class Day10B : IProblem
+    internal class Day10B : Day10A
     {
-        private readonly ParserType _parser;
-
-        public Day10B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
+            var lengths = Parser.GetData().Select(c => (int)c).ToList();
+            lengths.AddRange(new[] { 17, 31, 73, 47, 23 });
+
+            var head = Enumerable.Range(0, 256).ToArray().BuildCircularList();
+
+            var skipSize = 0;
+            var current = head;
+
+            for (var count = 0; count < 64; count++)
+                KnotHash(lengths, ref current, ref skipSize);
+
+            var denseHash = ConvertToDenseHash(head);
+            return ConvertToHashString(denseHash);
         }
 
-        public Day10B() : this(new ParserType("Day10\\day10.in"))
+        private static string ConvertToHashString(IEnumerable<int> hash)
         {
+            var sb = new StringBuilder();
 
+            foreach (var hex in hash)
+                sb.Append(hex.ToString("x2"));
+
+            return sb.ToString();
         }
 
-        public virtual string Solve()
+        private static int[] ConvertToDenseHash(Node<int> head)
         {
-            return "";
+            var output = new int[16];
+            var values = head.ToList();
+
+            for (var x = 0; x < values.Count; x += 16)
+            {
+                output[x / 16] =
+                    values[x] ^ values[x + 1] ^ values[x + 2] ^ values[x + 3] ^
+                    values[x + 4] ^ values[x + 5] ^ values[x + 6] ^ values[x + 7] ^
+                    values[x + 8] ^ values[x + 9] ^ values[x + 10] ^ values[x + 11] ^
+                    values[x + 12] ^ values[x + 13] ^ values[x + 14] ^ values[x + 15];
+            }
+            return output;
         }
     }
 }

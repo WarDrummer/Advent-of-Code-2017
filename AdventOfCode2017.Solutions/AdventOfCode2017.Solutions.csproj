@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LinkedListExtensions.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="BreadthFirstSearch.cs" />
     <Compile Include="Problem\ClipboardDecorator.cs" />
