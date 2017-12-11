@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2017.Solutions
+﻿using System.Text;
+
+namespace AdventOfCode2017.Solutions
 {
     using System;
     using System.Collections.Generic;
@@ -27,7 +29,7 @@
             currentNodes.Enqueue(start);
 
             var nextNodes = new Queue<IBfsNode<THashType>>();
-            var visited = new HashSet<THashType>();
+            var visited = new HashSet<THashType> {start.UniqueIdentifier};
 
             while (currentNodes.Count > 0)
             {
@@ -39,14 +41,18 @@
                     break;
                 }
 
+                //var sb = new StringBuilder();
+                //sb.Append(currentNode).Append(": ");
                 foreach (var nextNode in currentNode.GetNextNodes())
                 {
                     if (!visited.Contains(nextNode.UniqueIdentifier))
                     {
+                        //sb.Append(nextNode).Append(",");
                         nextNodes.Enqueue(nextNode);
                         visited.Add(nextNode.UniqueIdentifier);
                     }
                 }
+                //Console.WriteLine(sb);
 
                 if (currentNodes.Count == 0)
                 {
