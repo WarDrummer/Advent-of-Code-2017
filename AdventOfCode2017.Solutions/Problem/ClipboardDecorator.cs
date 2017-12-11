@@ -24,7 +24,8 @@ namespace AdventOfCode2017.Solutions.Problem
                 result = ex.ToString();
             }
 
-            Clipboard.SetText(result);
+            if(!string.IsNullOrEmpty(result))
+                Clipboard.SetText(result);
             return result;
         }
     }

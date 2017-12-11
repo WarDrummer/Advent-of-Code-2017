@@ -30,7 +30,7 @@ namespace AdventOfCode2017.Solutions
             {
                 list.Add(current.Value);
                 current = current.Next;
-            } while (current != head);
+            } while (current != head && current != null);
             return list;
         }
 
@@ -42,7 +42,8 @@ namespace AdventOfCode2017.Solutions
             {
                 list.Add(current.Value);
                 current = current.Next;
-            } while (current != head);
+            } while (current != head && current != null);
+
             Console.WriteLine(string.Join(", ", list));
         }
     }
