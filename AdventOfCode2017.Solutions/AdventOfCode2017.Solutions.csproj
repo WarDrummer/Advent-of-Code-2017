@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AxialHexCoordinate.cs" />
+    <Compile Include="CubeHexCoordinate.cs" />
     <Compile Include="LinkedListExtensions.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />

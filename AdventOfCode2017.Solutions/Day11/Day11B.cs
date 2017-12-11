@@ -10,24 +10,23 @@ namespace AdventOfCode2017.Solutions.Day11
         {
             var directions = _parser.GetData().Split(", ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
-            var x = 0;
-            var y = 0;
-            var start = new AxialHexNode(x, y).ToCubeHex();
+            var q = 0;
+            var r = 0;
+            var start = new AxialHexCoordinate(0, 0);
             var max = int.MinValue;
             foreach (var direction in directions)
             {
                 switch (direction)
                 {
-                    case "n": x++; break;
-                    case "nw": x++; y--; break;
-                    case "ne": y++; break;
-                    case "s": x--; break;
-                    case "sw": y--; break;
-                    case "se": x--; y++; break;
+                    case "n": q++; break;
+                    case "nw": q++; r--; break;
+                    case "ne": r++; break;
+                    case "s": q--; break;
+                    case "sw": r--; break;
+                    case "se": q--; r++; break;
                 }
 
-                var cubeHex = new AxialHexNode(x, y).ToCubeHex();
-                var distance = cubeHex.GetDistanceTo(start);
+                var distance = new AxialHexCoordinate(q, r).GetDistanceTo(start);
                 if (distance > max)
                     max = distance;
             }
