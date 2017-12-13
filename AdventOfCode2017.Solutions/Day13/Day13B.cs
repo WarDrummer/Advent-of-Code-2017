@@ -10,7 +10,7 @@ namespace AdventOfCode2017.Solutions.Day13
         {
             var input = Parser.GetData();
             var scannerRanges = new Dictionary<int, int>();
-            var max = 0;
+  
             foreach (var depth in input)
             {
                 var parts = depth
@@ -18,10 +18,33 @@ namespace AdventOfCode2017.Solutions.Day13
                     .Select(int.Parse)
                     .ToArray();
 
-                scannerRanges.Add(parts[0], parts[1]);
-                max = parts[0];
+                // back to starting location is (range - 1) * 2
+                scannerRanges.Add(parts[0], (parts[1]-1)*2);
             }
 
+            var delay = 0;
+            while (true)
+            {
+                var caught = false;
+                foreach (var layer in scannerRanges.Keys)
+                {
+                    if ((layer + delay) % scannerRanges[layer] == 0)
+                    {
+                        caught = true;
+                        break;
+                    }
+                }
+
+                if (!caught)
+                    return delay.ToString();
+                delay++;
+            }
+        }
+
+        
+
+        private string SimulateForAnswer(int max, Dictionary<int, int> scannerRanges)
+        {
             var delay = 0;
             var caught = true;
 

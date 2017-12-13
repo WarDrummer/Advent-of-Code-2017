@@ -38,6 +38,7 @@ namespace AdventOfCode2017.Solutions.Day13
             {
                 if (scannerRanges.ContainsKey(layer) && scannerLocations[layer] == 0)
                     severity += scannerRanges[layer] * layer;
+                //Console.WriteLine($"{layer}: {string.Join(", ", scannerLocations)}");
                 AdvanceScanners(scannerLocations, scannerRanges);
             }
 
