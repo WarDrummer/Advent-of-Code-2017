@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using AdventOfCode2017.Solutions.Extensions;
 using AdventOfCode2017.Solutions.Parsers;
 using AdventOfCode2017.Solutions.Problem;
 

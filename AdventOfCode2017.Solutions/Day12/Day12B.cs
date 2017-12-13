@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AdventOfCode2017.Solutions.Parsers;
+﻿using System.Collections.Generic;
 
 namespace AdventOfCode2017.Solutions.Day12
 {
@@ -9,74 +6,42 @@ namespace AdventOfCode2017.Solutions.Day12
     {
         public override string Solve()
         {
-            var lines = _parser.GetData();
-            var nodes = new Dictionary<int, GraphNode>();
-         
-            foreach (var line in lines)
+            var lines = Parser.GetData();
+            var adjacencyList = BuildAdjacencyList(lines);
+            return GetNumberOfGroups(adjacencyList).ToString();
+        }
+        protected int GetNumberOfGroups(Dictionary<int, List<int>> adjacencyList)
+        {
+            var visited = new HashSet<int>();
+            var count = 0;
+
+            foreach (var key in adjacencyList.Keys)
             {
-                var parts = line.Split(new[] { "<->" }, StringSplitOptions.RemoveEmptyEntries);
-                var target = int.Parse(parts[0]);
-                var targets = parts[1].Split(',').Select(int.Parse).ToArray();
+                if (visited.Contains(key))
+                    continue;
 
-                foreach (var t in targets)
+                count++;
+                visited.Add(key);
+
+                var connectedNodes = new Queue<int>();
+                connectedNodes.Enqueue(key);
+
+                while (connectedNodes.Count > 0)
                 {
-                    if(!nodes.ContainsKey(t))
-                        nodes[t] = new GraphNode(t);
-
-                    if (!nodes.ContainsKey(target))
-                        nodes[target] = new GraphNode(target);
-
-                    if(!nodes[t].ConnectedNodes.Contains(target))
-                        nodes[t].ConnectedNodes.Add(nodes[target].Id);
-
-                    if (!nodes[target].ConnectedNodes.Contains(t))
-                        nodes[target].ConnectedNodes.Add(nodes[t].Id);
-                }
-            }
-
-            for (var i = 0; i < nodes.Count; i++)
-            {
-                for (var j = 0; j < nodes.Count; j++)
-                {
-                    if (i == j)
-                        continue;
-
-                    if (nodes[i].ConnectedNodes.Contains(j))
+                    var current = connectedNodes.Dequeue();
+                    foreach (var child in adjacencyList[current])
                     {
-                        var aggregate = nodes[i].ConnectedNodes
-                            .Concat(nodes[j].ConnectedNodes)
-                            .Distinct()
-                            .ToList();
-                        nodes[i].ConnectedNodes = aggregate;
-                        nodes[j].ConnectedNodes = aggregate;
+                        if (!visited.Contains(child))
+                        {
+                            connectedNodes.Enqueue(child);
+                            visited.Add(child);
+                        }
                     }
                 }
             }
 
-            var uniqueGroups = new HashSet<string>();
-            foreach (var node in nodes.Values)
-            {
-                uniqueGroups.Add(node.GroupId);
-            }
-
-            return uniqueGroups.Count.ToString();
+            return count;
         }
-        public class GraphNode
-        {
-            public int Id { get; }
-            public List<int> ConnectedNodes = new List<int>();
 
-            public GraphNode(int id) { Id = id; }
-
-            public string GroupId
-            {
-                get
-                {
-                    var connected = ConnectedNodes.ToArray();
-                    Array.Sort(connected);
-                    return string.Join(",", connected);
-                }
-            }
-        }
     }
 }
