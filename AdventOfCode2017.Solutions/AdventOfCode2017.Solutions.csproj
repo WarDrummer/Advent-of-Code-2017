@@ -126,7 +126,9 @@
     <None Include="Day12\day12.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Day13\day13.in" />
+    <None Include="Day13\day13.in">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Day14\day14.in">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
