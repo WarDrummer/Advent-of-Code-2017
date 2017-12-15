@@ -1,27 +1,37 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode2017.Solutions.Day15
-{
-    using ParserType = SingleLineStringParser;
-
-    internal class Day15B : IProblem
+{ 
+    internal class Day15B : Day15A
     {
-        private readonly ParserType _parser;
-
-        public Day15B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
-        }
+            var startingNumbers = Parser.GetData().Select(l => long.Parse(l.Split(' ')[4])).ToArray();
 
-        public Day15B() : this(new ParserType("Day15\\day15.in"))
-        {
+            var a = startingNumbers[0];
+            var b = startingNumbers[1];
+            var count = 0;
+            var q1 = new Queue<long>();
+            var q2 = new Queue<long>();
+            var numberJudged = 0;
+            while (numberJudged < 5000000)
+            {
+                a = (a * FactorA) % Div;
+                b = (b * FactorB) % Div;
 
-        }
+                if (a % 4 == 0) q1.Enqueue(a);
+                if (b % 8 == 0) q2.Enqueue(b);
 
-        public virtual string Solve()
-        {
-            return "";
-        }
+                if (q1.Count > 0 && q2.Count > 0)
+                {
+                    numberJudged++;
+                    if ((q1.Dequeue() & Mask) == (q2.Dequeue() & Mask))
+                        count++;
+                }
+            }
+
+            return count.ToString();
+        } 
     }
 }
