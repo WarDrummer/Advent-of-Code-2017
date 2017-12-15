@@ -1,4 +1,6 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
+﻿using System.Linq;
+using AdventOfCode2017.Solutions.Extensions;
+using AdventOfCode2017.Solutions.Parsers;
 using AdventOfCode2017.Solutions.Problem;
 
 namespace AdventOfCode2017.Solutions.Day14
@@ -7,21 +9,24 @@ namespace AdventOfCode2017.Solutions.Day14
 
     internal class Day14A : IProblem
     {
-        private readonly ParserType _parser;
+        protected readonly ParserType Parser;
 
-        public Day14A(ParserType parser)
-        {
-            _parser = parser;
-        }
+        public Day14A(ParserType parser) { Parser = parser; }
 
-        public Day14A() : this(new ParserType("Day14\\day14.in"))
-        {
-
-        }
+        public Day14A() : this(new ParserType("Day14\\day14.in")){ }
 
         public virtual string Solve()
         {
-            return "";
+            var input = Parser.GetData();
+            var count = 0;
+            for (var i = 0; i < 128; i++)
+            {
+                var hash = KnotHasher.ComputeKnotHash($"{input}-{i}");
+                var binary = hash.FromHexStringToBinaryString();
+                count += binary.Count(b => b == '1');
+            }
+
+            return count.ToString();
         }
     }
 }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AxialHexCoordinate.cs" />
     <Compile Include="CubeHexCoordinate.cs" />
+    <Compile Include="KnotHasher.cs" />
     <Compile Include="LinkedListExtensions.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />

@@ -41,8 +41,6 @@ namespace AdventOfCode2017.Solutions.Day13
             }
         }
 
-        
-
         private string SimulateForAnswer(int max, Dictionary<int, int> scannerRanges)
         {
             var delay = 0;

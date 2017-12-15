@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using AdventOfCode2017.Solutions.Extensions;
 using AdventOfCode2017.Solutions.Parsers;
 using AdventOfCode2017.Solutions.Problem;
@@ -22,7 +21,7 @@ namespace AdventOfCode2017.Solutions.Day10
             var skipSize = 0;
             var head = Enumerable.Range(0, 256).ToArray().BuildCircularList();
             var current = head;
-            KnotHash(lengths, ref current, ref skipSize);
+            KnotHasher.KnotHash(lengths, ref current, ref skipSize);
             return GetProduct(head).ToString();
         }
 
@@ -34,32 +33,6 @@ namespace AdventOfCode2017.Solutions.Day10
             var multiplier = node.Value;
             var result = multiplicand * multiplier;
             return result;
-        }
-
-        protected static void KnotHash(List<int> lengths, ref Node<int> node, ref int skipSize)
-        {
-            var stack = new Stack<int>();
-            foreach (var length in lengths)
-            {
-                var current = node;
-
-                for (var lengthCount = 0; lengthCount < length; lengthCount++)
-                {
-                    stack.Push(node.Value);
-                    node = node.Next;
-                }
-
-                while (stack.Count > 0)
-                {
-                    current.Value = stack.Pop();
-                    current = current.Next;
-                }
-
-                for (var advanceCount = 0; advanceCount < skipSize; advanceCount++)
-                    node = node.Next;
-
-                skipSize++;
-            }
-        }
+        }        
     }
 }
