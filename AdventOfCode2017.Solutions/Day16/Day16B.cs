@@ -5,23 +5,17 @@ namespace AdventOfCode2017.Solutions.Day16
 {
     using ParserType = SingleLineStringParser;
 
-    internal class Day16B : IProblem
+	internal class Day16B : Day16A
     {
-        private readonly ParserType _parser;
-
-        public Day16B(ParserType parser)
+		public override string Solve()
         {
-            _parser = parser;
-        }
+			var moves = _parser.GetData().Split(',');
+			var programs = "abcdefghijklmnop".ToCharArray();
 
-        public Day16B() : this(new ParserType("Day16\\day16.in"))
-        {
+			for (var i = 0; i < 1000000000; i++)
+				programs = Dance(moves, programs);
 
-        }
-
-        public virtual string Solve()
-        {
-            return "";
+			return new string(programs);
         }
     }
 }
