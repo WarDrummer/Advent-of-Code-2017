@@ -1,27 +1,24 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
-
-namespace AdventOfCode2017.Solutions.Day17
+﻿namespace AdventOfCode2017.Solutions.Day17
 {
-    using ParserType = SingleLineStringParser;
-
-    internal class Day17B : IProblem
+    internal class Day17B : Day17A
     {
-        private readonly ParserType _parser;
+        private const int Spins = 50000000;
 
-        public Day17B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
-        }
+            var spin = int.Parse(Parser.GetData());
+            var head = new Node<int>(0);
+            head.Next = head;
+            var current = head;
+            for (var i = 1; i <= Spins; i++)
+            {
+                for (var spinCount = 0; spinCount < spin; spinCount++)
+                    current = current.Next;
 
-        public Day17B() : this(new ParserType("Day17\\day17.in"))
-        {
-
-        }
-
-        public virtual string Solve()
-        {
-            return "";
+                current.Next = new Node<int>(i, current.Next);
+                current = current.Next;
+            }
+            return head.Next.Value.ToString();
         }
     }
 }

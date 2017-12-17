@@ -36,15 +36,7 @@ namespace AdventOfCode2017.Solutions
 
         public static void ToConsole<TValue>(this Node<TValue> head)
         {
-            var current = head;
-            var list = new List<TValue>();
-            do
-            {
-                list.Add(current.Value);
-                current = current.Next;
-            } while (current != head && current != null);
-
-            Console.WriteLine(string.Join(", ", list));
+            Console.WriteLine(string.Join(", ", head.ToList()));
         }
     }
 }
