@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="AxialHexCoordinate.cs" />
     <Compile Include="CubeHexCoordinate.cs" />
+    <Compile Include="Day16\IDanceMove.cs" />
+    <Compile Include="Day16\RotateMove.cs" />
+    <Compile Include="Day16\SwapPositionMove.cs" />
+    <Compile Include="Day16\SwapProgramMove.cs" />
     <Compile Include="KnotHasher.cs" />
     <Compile Include="LinkedListExtensions.cs" />
     <Compile Include="Node.cs" />

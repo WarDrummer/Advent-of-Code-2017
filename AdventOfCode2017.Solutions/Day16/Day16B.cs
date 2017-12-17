@@ -1,21 +1,27 @@
-using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
+using System.Collections.Generic;
 
 namespace AdventOfCode2017.Solutions.Day16
 {
-    using ParserType = SingleLineStringParser;
-
 	internal class Day16B : Day16A
     {
-		public override string Solve()
+        public override string Solve()
         {
-			var moves = _parser.GetData().Split(',');
-			var programs = "abcdefghijklmnop".ToCharArray();
+            var moves = Parser.GetData().Split(',');
+            DanceMoves = GetDanceMoves(moves, Programs);
+            var found = new Dictionary<int, string>();
+            var count = 0;
 
-			for (var i = 0; i < 1000000000; i++)
-				programs = Dance(moves, programs);
+            while(true)
+            {
+                PerformDance();
+                var current = new string(Programs);
+                if (!found.ContainsValue(current))
+                    found.Add(++count, current);
+                else
+                    break;
+            }
 
-			return new string(programs);
+            return found[1000000000 % count];
         }
     }
 }

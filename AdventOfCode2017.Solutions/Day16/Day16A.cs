@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AdventOfCode2017.Solutions.Parsers;
 using AdventOfCode2017.Solutions.Problem;
@@ -9,72 +9,63 @@ namespace AdventOfCode2017.Solutions.Day16
 
     internal class Day16A : IProblem
     {
-		protected readonly ParserType _parser;
+		protected readonly ParserType Parser;
+        protected List<IDanceMove> DanceMoves;
+        protected char[] Programs = "abcdefghijklmnop".ToCharArray();
 
-        public Day16A(ParserType parser) { _parser = parser; }
+        public Day16A(ParserType parser) { Parser = parser; }
 
         public Day16A() : this(new ParserType("Day16/day16.in")) { }
 
         public virtual string Solve()
 		{
-			var moves = _parser.GetData().Split(',');
-			var programs = "abcdefghijklmnop".ToCharArray();
-			programs = Dance(moves, programs);
-			return new string(programs);
+			var moves = Parser.GetData().Split(',');
+		    DanceMoves = GetDanceMoves(moves, Programs);
+		    PerformDance();
+            return new string(Programs);
 		}
 
-		protected static char[] Dance(string[] moves, char[] programs)
-		{
-			foreach (var move in moves)
-			{
-				switch (move[0])
-				{
-					case 's':
-						var rotate = int.Parse(move.Substring(1, move.Length - 1));
-						Rotate(ref programs, rotate);
-						break;
-					case 'x':
-						{
-							var indexes = move.Substring(1, move.Length - 1).Split('/').Select(int.Parse).ToArray();
-							SwapAtIndexes(ref programs, indexes);
-						}
-						break;
-					case 'p':
-						{
-							var indexes = move.Substring(1, move.Length - 1).Split('/').Select(c => c[0]).Select(c => IndexOf(c, programs)).ToArray();
-							SwapAtIndexes(ref programs, indexes);
-						}
-						break;
-				}
-			}
+        protected void PerformDance()
+        {
+            foreach (var move in DanceMoves)
+                move.Perform(ref Programs);
+        }
 
-			return programs;
-		}
+        protected static List<IDanceMove> GetDanceMoves(string[] moves, char[] programs)
+        {
+            var danceMoves = new List<IDanceMove>(moves.Length);
+            foreach (var move in moves)
+            {
+                if (move[0] == 's')
+                {
+                    var rotate = int.Parse(move.Substring(1, move.Length - 1));
+                    danceMoves.Add(new RotateMove(rotate, programs.Length));
+                }
+                else if (move[0] == 'x')
+                {
+                    {
+                        var indexes = move
+                            .Substring(1, move.Length - 1)
+                            .Split('/')
+                            .Select(int.Parse)
+                            .ToArray();
 
-		private static void SwapAtIndexes(ref char[] programs, int[] indexes)
-		{
-			var temp = programs[indexes[0]];
-			programs[indexes[0]] = programs[indexes[1]];
-			programs[indexes[1]] = temp;
-		}
+                        danceMoves.Add(new SwapPositionMove(indexes[0], indexes[1]));
+                    }
+                }
+                else if (move[0] == 'p')
+                {
+                    {
+                        var indexes = move.Substring(1, move.Length - 1)
+                            .Split('/')
+                            .Select(c => c[0])
+                            .ToArray();
 
-		private static int IndexOf(char program, char[] programs)
-		{
-			for (var i = 0; i < programs.Length; i++)
-				if (programs[i] == program)
-					return i;
-			return -1;
-		}
-
-		private static void Rotate(ref char[] chars, int rotation)
-		{
-			var length = chars.Length;
-			rotation = (rotation % length);
-			rotation = length - rotation;
-			var rotated = new char[length];
-			for (var i = 0; i < length; i++, rotation++)
-				rotated[i] = chars[rotation % length];
-			chars = rotated;
-		}
-	}
+                        danceMoves.Add(new SwapProgramMove(indexes[0], indexes[1]));
+                    }
+                }
+            }
+            return danceMoves;
+        }
+    }
 }
