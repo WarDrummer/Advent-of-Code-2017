@@ -47,6 +47,8 @@
     <Compile Include="Day16\RotateMove.cs" />
     <Compile Include="Day16\SwapPositionMove.cs" />
     <Compile Include="Day16\SwapProgramMove.cs" />
+    <Compile Include="Day18\Computer.cs" />
+    <Compile Include="Day18\ComputerV2.cs" />
     <Compile Include="KnotHasher.cs" />
     <Compile Include="LinkedListExtensions.cs" />
     <Compile Include="Node.cs" />

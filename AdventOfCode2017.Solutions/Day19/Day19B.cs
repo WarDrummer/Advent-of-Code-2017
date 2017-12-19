@@ -1,27 +1,11 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
-
-namespace AdventOfCode2017.Solutions.Day19
+﻿namespace AdventOfCode2017.Solutions.Day19
 {
-    using ParserType = SingleLineStringParser;
-
-    internal class Day19B : IProblem
+    internal class Day19B : Day19A
     {
-        private readonly ParserType _parser;
-
-        public Day19B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
-        }
-
-        public Day19B() : this(new ParserType("Day19\\day19.in"))
-        {
-
-        }
-
-        public virtual string Solve()
-        {
-            return "";
+            RunPath();
+            return Steps.ToString();
         }
     }
 }
