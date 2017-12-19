@@ -11,14 +11,16 @@ namespace AdventOfCode2017.Solutions.Day18
         public ComputerV2 PairedComputer { get; set; }
         public ulong SendCount { get; set; }
 
-        public bool Waiting => _received.Count < 1 && _lastInstructionWasReceive;
+        public bool Waiting => _received.Count < 1 && IsReceiving;
+        public bool StackOverflow => InstructionPointer >= Instructions.Length || InstructionPointer < 0;
+
+        private bool IsReceiving => Instructions[InstructionPointer][0] == "rcv";
 
         private readonly Queue<long> _received = new Queue<long>();
-        private bool _lastInstructionWasReceive;
 
         protected override bool Terminate
         {
-            get => _lastInstructionWasReceive && _received.Count < 1;
+            get => Waiting || StackOverflow;
             set => throw new Exception("Liskov Violation!");
         }
 
@@ -27,15 +29,8 @@ namespace AdventOfCode2017.Solutions.Day18
             Id = id;
         }
 
-        public override void ExecuteCycle()
-        {
-            _lastInstructionWasReceive = false;
-            base.ExecuteCycle();
-        }
-
         protected override void Rcv(string[] parts)
         {
-            _lastInstructionWasReceive = true;
             if (_received.Count > 0)
             {
                 var value = _received.Dequeue();

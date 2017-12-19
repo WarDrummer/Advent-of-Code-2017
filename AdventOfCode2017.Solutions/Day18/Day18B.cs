@@ -19,14 +19,16 @@ namespace AdventOfCode2017.Solutions.Day18
 
             while (!(computer0.Waiting && computer1.Waiting))
             {
-                computer1.ExecuteCycle();
+                computer0.Run();
+                computer1.Run();
+                //computer1.ExecuteCycle();
                 //Console.WriteLine(computer0.GetInstruction());
-                //computer0.Run();
-                computer0.ExecuteCycle();
+                
+                //computer0.ExecuteCycle();
                 //Console.WriteLine(computer0.GetState());
 
                 //Console.WriteLine(computer1.GetInstruction());
-                //computer1.Run();
+
                 //computer1.ExecuteCycle();
                 //Console.WriteLine(computer1.GetState());
             }
