@@ -61,7 +61,7 @@ namespace AdventOfCode2017.Solutions.Day18
 
         private void Jgz(string[] parts)
         {
-            var x = GetRegisterValue(parts[1]);
+            var x = GetValue(parts[1]);
             var y = GetValue(parts[2]);
             InstructionPtr += (x > 0) ? y : 1;
         }

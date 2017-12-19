@@ -35,10 +35,6 @@ namespace AdventOfCode2017.Solutions.Day18
                 SetRegister(parts[1], value);
                 InstructionPtr++;
             }
-            else
-            {
-                //Console.WriteLine("Waiting...");
-            }
         }
 
         protected override void Snd(string[] parts)
@@ -46,11 +42,6 @@ namespace AdventOfCode2017.Solutions.Day18
             SendCount++;
             PairedComputer.QueueValue(GetValue(parts[1]));
             InstructionPtr++;
-            
-            //if (Id == 1 && SendCount > 10000)
-            //{
-            //    throw new Exception("Swing and a miss...");
-            //}
         }
 
         public void QueueValue(long value)
