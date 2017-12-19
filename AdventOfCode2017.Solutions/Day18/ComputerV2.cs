@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 
 namespace AdventOfCode2017.Solutions.Day18
@@ -9,16 +8,15 @@ namespace AdventOfCode2017.Solutions.Day18
     {
         public int Id { get; }
         public ComputerV2 PairedComputer { get; set; }
-        public ulong SendCount { get; set; }
+        public long SendCount { get; set; }
 
         public bool Waiting => _received.Count < 1 && IsReceiving;
-        public bool StackOverflow => InstructionPointer >= Instructions.Length || InstructionPointer < 0;
-
-        private bool IsReceiving => Instructions[InstructionPointer][0] == "rcv";
+       
+        private bool IsReceiving => Instructions[InstructionPtr][0] == "rcv";
 
         private readonly Queue<long> _received = new Queue<long>();
 
-        protected override bool Terminate
+        public override bool Terminate
         {
             get => Waiting || StackOverflow;
             set => throw new Exception("Liskov Violation!");
@@ -35,17 +33,24 @@ namespace AdventOfCode2017.Solutions.Day18
             {
                 var value = _received.Dequeue();
                 SetRegister(parts[1], value);
-                InstructionPointer++;
+                InstructionPtr++;
+            }
+            else
+            {
+                //Console.WriteLine("Waiting...");
             }
         }
 
         protected override void Snd(string[] parts)
         {
-            PairedComputer.QueueValue(GetValue(parts[1]));
-            InstructionPointer++;
             SendCount++;
-
-            //Debug.Assert(Id == 0 || SendCount < 10000, "Nope");
+            PairedComputer.QueueValue(GetValue(parts[1]));
+            InstructionPtr++;
+            
+            //if (Id == 1 && SendCount > 10000)
+            //{
+            //    throw new Exception("Swing and a miss...");
+            //}
         }
 
         public void QueueValue(long value)
@@ -57,9 +62,9 @@ namespace AdventOfCode2017.Solutions.Day18
         {
             var sb = new StringBuilder();
             sb.Append($"Program({Id}) - ")
-                .Append($"{string.Join(" ", Instructions[InstructionPointer])}")
+                .Append($"{string.Join(" ", Instructions[InstructionPtr])}")
                 .Append('\t')
-                .Append($"IP: {InstructionPointer} ");
+                .Append($"IP: {InstructionPtr} ");
 
             return sb.ToString();
         }
@@ -69,8 +74,9 @@ namespace AdventOfCode2017.Solutions.Day18
             var sb = new StringBuilder();
 
             foreach (var r in Registers)
-                sb.Append('\t')
-                    .Append($"{r.Key}: {r.Value}");
+                sb.Append('\t').Append($"{r.Key}: {r.Value}");
+
+            sb.Append('\t').Append($"IP: {InstructionPtr}");
 
             sb.AppendLine()
                 .Append('\t')
