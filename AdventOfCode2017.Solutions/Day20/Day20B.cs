@@ -1,27 +1,45 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
+using AdventOfCode2017.Solutions.Parsers;
 
 namespace AdventOfCode2017.Solutions.Day20
 {
     using ParserType = SingleLineStringParser;
 
-    internal class Day20B : IProblem
+    internal class Day20B : Day20A
     {
-        private readonly ParserType _parser;
-
-        public Day20B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
-        }
+            var particles = Parser.GetData().Select(Particle.FromString).ToList();
+            var countMatch = 0;
+            var lastCount = 0;
+            while (countMatch < 10)
+            {
+                var locationsEncountered = new Dictionary<string, int>();
+                for (var index = 0; index < particles.Count; index++)
+                {
+                    particles[index].Tick();
+                    var locationHash = particles[index].ToString();
+                    if (!locationsEncountered.ContainsKey(locationHash))
+                        locationsEncountered.Add(locationHash, 0);
+                    locationsEncountered[locationHash]++;
+                }
 
-        public Day20B() : this(new ParserType("Day20\\day20.in"))
-        {
+                particles = particles
+                    .Where(p => locationsEncountered[p.ToString()] == 1).ToList();
 
-        }
+                if (lastCount == particles.Count)
+                    countMatch++;
+                else
+                {
+                    countMatch = 0;
+                    lastCount = particles.Count;
+                }
+            }
 
-        public virtual string Solve()
-        {
-            return "";
+            return particles.Count.ToString();
         }
     }
 }
