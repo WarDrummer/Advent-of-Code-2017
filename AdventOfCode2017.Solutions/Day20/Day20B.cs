@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
-using AdventOfCode2017.Solutions.Parsers;
 
 namespace AdventOfCode2017.Solutions.Day20
 {
-    using ParserType = SingleLineStringParser;
-
     internal class Day20B : Day20A
     {
         public override string Solve()
