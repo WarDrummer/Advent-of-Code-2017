@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AdventOfCode2017.Solutions.Extensions;
 using AdventOfCode2017.Solutions.Parsers;
 using AdventOfCode2017.Solutions.Problem;
 
@@ -113,16 +114,16 @@ namespace AdventOfCode2017.Solutions.Day21
                 var matchAsMatrix = To2DArray(rule[0]);
                 for (var i = 0; i < 3; i++)
                 {
-                    matchAsMatrix = Rotate(matchAsMatrix);
+                    matchAsMatrix = matchAsMatrix.Rotate();
                     var m = BackToString(matchAsMatrix);
                     if (!rules.ContainsKey(m))
                         rules.Add(m, rule[1]);
                 }
 
-                matchAsMatrix = Flip(matchAsMatrix);
+                matchAsMatrix = matchAsMatrix.Flip();
                 for (var i = 0; i < 4; i++)
                 {
-                    matchAsMatrix = Rotate(matchAsMatrix);
+                    matchAsMatrix = matchAsMatrix.Rotate();
                     var m = BackToString(matchAsMatrix);
                     if (!rules.ContainsKey(m))
                         rules.Add(m, rule[1]);
@@ -139,34 +140,6 @@ namespace AdventOfCode2017.Solutions.Day21
         private static string BackToString(char[][] matrix)
         {
             return string.Join("/", matrix.Select(m => new string(m)));
-        }
-
-        private static char[][] Rotate(char[][] matrix)
-        {
-            var n = matrix.Length;
-            for (var layer = 0; layer < n / 2; layer++)
-            {
-                var first = layer;
-                var last = n - 1 - layer;
-                for (var i = first; i < last; i++)
-                {
-                    var offset = i - first;
-                    var top = matrix[first][i];
-                    matrix[first][i] = matrix[last - offset][first];
-                    matrix[last - offset][first] = matrix[last][last - offset];
-                    matrix[last][last - offset] = matrix[i][last];
-                    matrix[i][last] = top;
-                }
-            }
-
-            return matrix;
-        }
-
-        private static char[][] Flip(char[][] matrix)
-        {
-            foreach (var row in matrix)
-                Array.Reverse(row);
-            return matrix;
         }
     }
 }
