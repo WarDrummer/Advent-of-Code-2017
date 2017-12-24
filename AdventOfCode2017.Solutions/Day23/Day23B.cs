@@ -1,27 +1,42 @@
-﻿using AdventOfCode2017.Solutions.Parsers;
-using AdventOfCode2017.Solutions.Problem;
-
-namespace AdventOfCode2017.Solutions.Day23
+﻿namespace AdventOfCode2017.Solutions.Day23
 {
-    using ParserType = SingleLineStringParser;
-
-    internal class Day23B : IProblem
+    internal class Day23B : Day23A
     {
-        private readonly ParserType _parser;
-
-        public Day23B(ParserType parser)
+        public override string Solve()
         {
-            _parser = parser;
-        }
+            var c = 109300 + 17000;
+            var h = 0;
 
-        public Day23B() : this(new ParserType("Day23\\day23.in"))
-        {
+            for(var b = 109300; b < c; b += 17)
+            {
+                var f = 1;
+                var d = 2;
 
-        }
+                do
+                {
+                    var e = 2;
 
-        public virtual string Solve()
-        {
-            return "";
+                    do
+                    {
+                        if (d * e - b == 0)
+                            f = 0;
+                        e++;
+                    } while (e - b != 0);
+
+                    d++;
+
+                } while (d - b != 0);
+
+                if (f == 0)
+                    h++;
+            }
+
+            return h.ToString();
+
+            //var computer = new Computer(Parser.GetData().ToArray());
+            //computer.SetRegister("a", 1);
+            //computer.Run();
+            //return computer.GetRegisterValue("h").ToString();
         }
     }
 }
