@@ -51,6 +51,16 @@
     <Compile Include="Day18\ComputerV2.cs" />
     <Compile Include="Day20\Particle.cs" />
     <Compile Include="Day20\Vector3.cs" />
+    <Compile Include="Day23\Computer.cs" />
+    <Compile Include="Day25\Machine.cs" />
+    <Compile Include="Day25\Node.cs" />
+    <Compile Include="Day25\State.cs" />
+    <Compile Include="Day25\StateA.cs" />
+    <Compile Include="Day25\StateB.cs" />
+    <Compile Include="Day25\StateC.cs" />
+    <Compile Include="Day25\StateD.cs" />
+    <Compile Include="Day25\StateE.cs" />
+    <Compile Include="Day25\StateF.cs" />
     <Compile Include="Extensions\MatrixExtensions.cs" />
     <Compile Include="KnotHasher.cs" />
     <Compile Include="LinkedListExtensions.cs" />
